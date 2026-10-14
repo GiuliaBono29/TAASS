@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: club-service
+  namespace: blackcoffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: club-service
+  template:
+    metadata:
+      labels:
+        app: club-service
+    spec:
+      containers:
+        - name: club-service
+          image: blackcoffee:club-service
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8083
+          env:
+            - name: RABBIT_HOST
+              value: "rabbitmq"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dist"
+            - name: DB_SERVICE_NAME
+              value: "mysql"
+            - name: DB_NAME
+              value: "blackcoffee_db"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: CLUB_PORT
+              value: "8083"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: club-service
+  namespace: blackcoffee
+spec:
+  type: ClusterIP
+  selector:
+    app: club-service
+  ports:
+    - port: 8083
+      targetPort: 8083

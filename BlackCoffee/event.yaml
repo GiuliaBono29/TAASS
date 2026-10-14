@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-service
+  namespace: blackcoffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-service
+  template:
+    metadata:
+      labels:
+        app: event-service
+    spec:
+      containers:
+        - name: event-service
+          image: blackcoffee:event-service
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            - name: RABBIT_HOST
+              value: "rabbitmq"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dist"
+            - name: DB_SERVICE_NAME
+              value: "mysql"
+            - name: DB_NAME
+              value: "blackcoffee_db"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: EVENT_PORT
+              value: "8081"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-service
+  namespace: blackcoffee
+spec:
+  type: ClusterIP
+  selector:
+    app: event-service
+  ports:
+    - port: 8081
+      targetPort: 8081
+---

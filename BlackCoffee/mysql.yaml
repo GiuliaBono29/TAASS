@@ -1,0 +1,82 @@
+# ------------------------------------------
+# Secret for MySQL credentials
+# ------------------------------------------
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: blackcoffee
+type: Opaque
+stringData:
+  MYSQL_DATABASE: "blackcoffee_db"
+  MYSQL_ROOT_PASSWORD: "root"
+  MYSQL_PASSWORD: "root"
+---
+# ------------------------------------------
+# StatefulSet for MySQL
+# ------------------------------------------
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: blackcoffee
+spec:
+  serviceName: "mysql"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - secretRef:
+                name: mysql-secret
+          volumeMounts:
+            - name: blackcoffee-mysql-data
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+    - metadata:
+        name: blackcoffee-mysql-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Mi
+---
+# ------------------------------------------
+# headless Service
+# ------------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: blackcoffee
+spec:
+  clusterIP: None
+  selector:
+    app: mysql
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+---
+
+
+
+
+
+
+
+
+

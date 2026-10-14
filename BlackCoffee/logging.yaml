@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-service
+  namespace: blackcoffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-service
+  template:
+    metadata:
+      labels:
+        app: log-service
+    spec:
+      containers:
+      - name: log-service
+        image: blackcoffee:log-service
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8084
+        env:
+        - name: RABBIT_HOST
+          value: "rabbitmq"
+        - name: LOG_PORT
+          value: "8084"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "dist"
+        volumeMounts:
+        - name: log-storage
+          mountPath: /var/log
+      volumes:
+      - name: log-storage
+        emptyDir: {} # I log restano finché il pod esiste, per persistenza vera servirebbe un PVC
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-service
+  namespace: blackcoffee
+spec:
+  selector:
+    app: log-service
+  ports:
+    - port: 8084
+      targetPort: 8084

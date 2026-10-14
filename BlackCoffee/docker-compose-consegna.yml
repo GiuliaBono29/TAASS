@@ -1,0 +1,158 @@
+# Docker Compose file per Black Coffee Application
+# Definisce i microservizi in esecuzione
+services:
+
+  # Database MySQL
+  blackcoffee-db:
+    image: andreaargentero/blackcoffee-db:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blackcoffee_db
+    volumes:
+      - blackcoffee-mysql-data:/var/lib/mysql
+    networks:
+      - blackcoffee-net
+    container_name: blackcoffee-mysql
+    ports:
+      - "3306:3306"
+
+  # RabbitMQ
+  rabbitmq:
+    image: "rabbitmq:4.2-management-alpine"
+    container_name: blackcoffee-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - blackcoffee-net
+    volumes:
+      - blackcoffee-rabbitmq:/var/lib/rabbitmq
+
+  # Microservizio Log
+  log-service:
+    image: andreaargentero/blackcoffee-log:latest
+    environment:
+      - RABBIT_HOST=rabbitmq
+      - LOG_PORT=8084
+      - SPRING_PROFILES_ACTIVE=dist
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - blackcoffee-net
+    volumes:
+      - blackcoffee-logs:/var/log
+
+  notification-service:
+    image: andreaargentero/blackcoffee-notification:latest
+    environment:
+      - RABBIT_HOST=rabbitmq
+      - NOTIFICATION_PORT=8085
+      - SPRING_PROFILES_ACTIVE=dist
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - blackcoffee-net
+
+  # Microservizio Auth
+  auth-service:
+    image: andreaargentero/blackcoffee-auth:latest
+    environment:
+      - DB_SERVICE_NAME=blackcoffee-db
+      - DB_NAME=blackcoffee_db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - AUTH_PORT=8080
+      - SPRING_PROFILES_ACTIVE=dist
+    depends_on:
+      - blackcoffee-db
+      - rabbitmq
+      - log-service
+    networks:
+      - blackcoffee-net
+
+  # Microservizio Eventi
+  event-service:
+    image: andreaargentero/blackcoffee-event:latest
+    environment:
+      - DB_SERVICE_NAME=blackcoffee-db
+      - DB_NAME=blackcoffee_db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - EVENT_PORT=8081
+      - SPRING_PROFILES_ACTIVE=dist
+      - RABBIT_HOST=rabbitmq
+    depends_on:
+      - blackcoffee-db
+      - rabbitmq
+      - log-service
+    networks:
+      - blackcoffee-net
+
+  # Microservizio Spazi
+  space-service:
+    image: andreaargentero/blackcoffee-space:latest
+    environment:
+      - DB_SERVICE_NAME=blackcoffee-db
+      - DB_NAME=blackcoffee_db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - SPACE_PORT=8082
+      - SPRING_PROFILES_ACTIVE=dist
+      - RABBIT_HOST=rabbitmq
+    depends_on:
+      - blackcoffee-db
+      - rabbitmq
+      - log-service
+    networks:
+      - blackcoffee-net
+
+  # Microservizio Club
+  club-service:
+    image: andreaargentero/blackcoffee-club:latest
+    environment:
+      - DB_SERVICE_NAME=blackcoffee-db
+      - DB_NAME=blackcoffee_db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - CLUB_PORT=8083
+      - SPRING_PROFILES_ACTIVE=dist
+    depends_on:
+      - blackcoffee-db
+      - rabbitmq
+      - log-service
+    networks:
+      - blackcoffee-net
+
+  # Frontend
+  frontend:
+    image: andreaargentero/blackcoffee-frontend:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - auth-service
+      - event-service
+      - space-service
+      - club-service
+      - log-service
+      - notification-service
+      - rabbitmq
+    networks:
+      - blackcoffee-net
+
+# Rete container
+networks:
+  blackcoffee-net:
+    driver: bridge
+
+# Volumi per persistenza dati
+volumes:
+  blackcoffee-mysql-data:
+  blackcoffee-logs:
+  blackcoffee-rabbitmq:
