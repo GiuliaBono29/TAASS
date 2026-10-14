@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BlackCoffee login</title>
+  <!--CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!--JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/apiClient.js"></script>
+  <script src="js/login.js"></script>
+
+</head>
+
+<body style="background-color: #F3D3A5;">
+
+<header class="p-3" style="background-color:#D9A173; border-bottom: 2px solid black;">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="index.html" class="d-flex align-items-center text-dark text-decoration-none">
+      <img src="/img/pentafoglio.png" alt="Logo sito" width="50">
+      <span class="ms-2">Home</span>
+    </a>
+  </div>
+</header>
+
+<main class="form-signin w-100">
+  <form style="max-width: 50%; margin: 0 auto;" id="formLogin" novalidate>
+    <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" autocomplete="email">
+      <label for="emailInput">Email*</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="passwordInput" placeholder="Password" autocomplete="current-password">
+      <label for="passwordInput">Password*</label>
+    </div>
+    <p>* campi obbligatori</p>
+    <button class="btn btn-primary w-100 py-2" type="submit" aria-label="Login">Login</button>
+    <hr class="my-4">
+    <p class="text-center text-muted">oppure</p>
+    <div class="d-grid gap-2 mt-3">
+      <!-- Login GitHub -->
+      <a href="/api/auth/oauth2/authorization/github"
+         class="btn btn-dark d-flex align-items-center justify-content-center gap-2">
+        <img src="/img/icon/github-mark-white.png" alt="GitHub" width="20">
+        Login con GitHub
+      </a>
+
+      <!-- Login Google -->
+      <a href="/api/auth/oauth2/authorization/google"
+         class="btn btn-light border d-flex align-items-center justify-content-center gap-2">
+        <img src="/img/icon/web_neutral_rd_na@2x.png" alt="Google" width="20">
+        Login con Google
+      </a>
+    </div>
+
+    <div class="a-divider a-divider-break">
+      <p>Vuoi creare un account?</p>
+      <a href="sign_up.html" class="btn btn-secondary w-100 py-2">Sign up</a>
+    </div>
+  </form>
+</main>
+</body>
+</html>

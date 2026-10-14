@@ -1,0 +1,28 @@
+.btn-outline-custom {
+    border-color: #D9A173 !important;
+    color: black !important;
+}
+.btn-outline-custom:hover {
+    background-color: #D9A173 !important;
+    border-color: #D9A173 !important;
+    color: white !important;
+}
+.btn-check:checked + .btn-outline-custom {
+    background-color: #D9A173 !important;
+    border-color: #D9A173 !important;
+    color: white !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}

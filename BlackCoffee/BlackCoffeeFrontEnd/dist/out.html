@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BlackCoffee</title>
+  <!--CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!--JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/apiClient.js"></script>
+  <script src="js/loggedUser.js" defer></script>
+  <script src="js/footer.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="js/notification.js"></script>
+
+</head>
+
+<body style="background-color: #F3D3A5;">
+<!--Headers -->
+<header class="p-3" style="background-color: #F3D3A5;">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img src="img/pentafoglio.png" alt="Logo sito" width="50">
+      </a>
+      <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img src="img/Black_Coffee.png" alt="Logo sito" width="90">
+      </a>
+
+      <!-- Ricerca + Accesso -->
+      <div class="d-flex align-items-center ms-auto">
+        <form class="me-3" role="search">
+          <label for="search-input" class="visually-hidden">Ricerca</label>
+          <input type="search" id="search-input" class="form-control" placeholder="Ricerca..." aria-label="Search">
+        </form>
+
+        <div id="out-button" class="text-end">
+          <a href="login.html" class="btn btn-outline-dark me-2">Login</a>
+          <a href="sign_up.html" class="btn btn-outline-dark me-2">Sign-up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!--Main body -->
+<main class="container" style="background-color: #F3D3A5;">
+   <!--Riga 1-->
+  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis" style="background-color: #FFF5E1">
+    <!--Articolo 1-->
+    <div class="row align-items-center" style="background-color: #FFF5E1">
+      <div class="feature col-md-8" style="background-color: #FFF5E1">
+        <h1 class="display-4 fst-italic">Serata Espresso Letterario</h1>
+        <div class="mb-1 text-body-secondary">Nov 1</div>
+        <p class="lead my-3">Un viaggio tra parole e aromi: venerdì 24 Novembre verrà proposta in negozio una degustazione
+          di caffè monorigine accompagnata da una serata letture di gruppo. Un’occasione per
+          scoprire come il gusto può amplificare le emozioni di una storia.</p>
+        <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+      </div>
+
+      <div class="feature col-md-4 d-flex justify-content-center" style="background-color: #FFF5E1">
+        <img src="img/coffee_cup.png" alt="Tazza di caffè"
+             class="img-fluid"
+             style="width: 60%;">
+      </div>
+
+    </div>
+  </div>
+
+  <!--Riga 2-->
+  <div class="row mb-2">
+    <!--Articolo 2-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0">Nuove Uscite in Libreria</h2>
+          <div class="mb-1 text-body-secondary">Ott 20</div>
+          <p class="card-text mb-auto">Sono arrivati gli ultimi titoli della settimana!
+            Dai romanzi fantasy più attesi ai nuovi gialli italiani, la nostra libreria si è arricchita di tantissime novità.
+            Passa a curiosare tra gli scaffali o chiedi consiglio ai librai per trovare la tua prossima lettura preferita.</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="img/Books.png" alt="Immagine stilizzata di libri" class="img-fluid" style="width: 100%;  margin-top: 10%;">
+        </div>
+      </div>
+    </div>
+
+    <!--Articolo 3-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0">Club del Fumetto: Watchmen</h2>
+          <div class="mb-1 text-body-secondary">Ott 12</div>
+          <p class="mb-auto">Il Club del Fumetto di questo mese discuterà Watchmen, capolavoro di Alan Moore e Dave Gibbons.
+            Vieni a condividere la tua visione dei supereroi imperfetti e scopri i dettagli nascosti che rendono
+            questa graphic novel una pietra miliare del genere.</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="img/Comedian.png" alt="Logo Watchman" class="img-fluid" style="width: 80%; margin-top: 30%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Riga 3-->
+  <div class="row mb-2">
+    <!--Articolo 4-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0">Serata Poesia e Tisana</h2>
+          <div class="mb-1 text-body-secondary">Ott 1</div>
+          <p class="card-text mb-auto">
+            Un incontro intimo e rilassato dedicato alla poesia contemporanea.
+            I partecipanti potranno leggere i propri testi o quelli dei loro autori preferiti, accompagnati
+            da una selezione di tisane e dolci artigianali preparati dal nostro bar. Fate uscire il poeta che è in voi!</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="img/teaparty1.png" alt="Immagine tazzina di tè" class="img-fluid" style="width: 100%; margin-top: 30%;">
+        </div>
+      </div>
+    </div>
+
+    <!--Articolo 5-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+           style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static" style="flex: 0 0 60%;">
+          <h2 class="mb-0">Annuncio Nuovo Club</h2>
+          <div class="mb-1 text-body-secondary">Set 23</div>
+          <p class="card-text mb-auto">Amanti delle illustrazioni e del linguaggio visivo, questo è il club che fa per voi!
+            Nel nuovo Club dell’Arte del Fumetto analizzeremo ogni mese un’opera diversa esplorandone stile, colori,
+            composizione e tecniche grafiche. Il primo incontro sarà dedicato a Sandman di Neil Gaiman e Dave McKean</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 40%;">
+          <img src="img/sandman-the-endless.png" alt="The Sendman" class="img-fluid" style="width: 100%; margin-top: 35%;">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!--Riga 4-->
+  <div class="row mb-2">
+    <!--Articolo 6-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0">L’Angolo degli Scrittori</h2>
+          <div class="mb-1 text-body-secondary">Set 3</div>
+          <p class="mb-auto">Mercoledì 10 Settembre sera Black Coffee apre il microfono agli autori emergenti locali.
+            Vieni ad ascoltare racconti, poesie e pagine di romanzi letti direttamente da chi li ha scritti,
+            accompagnati dal profumo del nostro espresso. Parole nuove e sapori autentici ti aspettano.</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="img/books_angle.png" alt="Immagine libro aperto decorato" class="img-fluid" style="width: 100%; margin-top: 30%;">
+        </div>
+      </div>
+    </div>
+    <!--Articolo 7-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static" style="flex: 0 0 58%;">
+          <h2 class="mb-0">Aurora Edizioni</h2>
+          <div class="mb-1 text-body-secondary">Ago 25</div>
+          <p class="mb-auto">Siamo felici di annunciare una collaborazione con la casa editrice indipendente Aurora Edizioni.
+            Grazie a questa partnership, ogni mese presenteremo in anteprima un titolo del loro catalogo, con incontri,
+            interviste e copie scontate per i partecipanti.</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 42%;">
+          <img src="img/aurora_edizioni.png" alt="Logo Aurora Edizioni" class="img-fluid" style="width: 100%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Riga 5-->
+  <div class="row mb-2">
+    <!--Articolo 8-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0">Firma Copie con Felicia Kingsley</h2>
+          <div class="mb-1 text-body-secondary">Ago 31</div>
+          <p class="mb-auto">Lunedì 1 Dicembre ospiteremo Felicia Kingsley, autrice del bestseller Bugiarde si diventa.
+            Dopo una breve chiacchierata sull’ispirazione dietro al romanzo, l’autrice firmerà le copie e si
+            fermerà per un caffè con i lettori. L’evento è gratuito ma i posti sono limitati.</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="img/Bugiarde_si_diventa.jpg" alt="Immagine stilizzata grafico" class="img-fluid" style="width: 80%;; margin-top: 10%;">
+        </div>
+      </div>
+    </div>
+    <!--Articolo 9-->
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0">Tè dal mondo</h2>
+          <div class="mb-1 text-body-secondary">Ago 17</div>
+          <p class="mb-auto">Un viaggio aromatico tra culture e tradizioni: dalla Cina al Giappone,
+            fino all’India e al Marocco, scopriremo insieme i profili unici dei tè più pregiati. Ogni infusione
+            sarà accompagnata da un breve racconto ispirato al paese d’origine.</p>
+          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Mostra altro</a></p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="img/teiera.png" alt="Immagine stilizzata grafico" class="img-fluid" style="width: 100%; margin-top: 10%;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+</main>
+
+<!--Footer -->
+<footer class="p-3 mt-5" style="background-color: #D9A173; border-top: 2px solid black;">
+  <div class="container">
+    <div id="footer-nav" class="d-flex justify-content-center align-items-center" style="font-size: 1.1rem;">
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>

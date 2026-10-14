@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding-top: 180px;
+  padding-bottom: 70px;
+  overflow-x: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+main {
+  min-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+.scroll-buttons {
+  overflow-x: hidden;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 218, 185, 0.8);
+  border: 1px solid #000;
+  color: #000;
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, transform 0.2s;
+}
+.scroll-btn:hover {
+  background: #FFB396;
+  transform: translateY(-50%) scale(1.1);
+}
+.left-btn { left: -10px; }
+.right-btn { right: -10px; }
+
+.btn {
+  transition: transform 0.2s;
+}
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 150px;
+  z-index: 1050;
+  border-radius: 50px;
+  padding: 15px 25px;   /* +25% */
+  font-size: 1.375rem;  /* +25% */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+ .stelle-grandi {
+   font-size: 2rem;
+   color: goldenrod;
+   text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 2px 6px rgba(0,0,0,0.25);
+   font-family: "Noto Sans Symbols", "Symbola", "Segoe UI Symbol", "Segoe UI Emoji", sans-serif;
+   line-height: 1;
+   letter-spacing: 0.05em;
+ }

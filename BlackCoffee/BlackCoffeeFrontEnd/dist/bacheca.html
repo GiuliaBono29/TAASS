@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BlackCoffee</title>
+  <!--CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!--JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/bacheca.js"></script>
+
+  <link rel="stylesheet" href="css/style_bacheca.css">
+
+  <script src="js/apiClient.js"></script>
+  <script src="js/loggedUser.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="/js/bacheca.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="js/notification.js"></script>
+  
+</head>
+
+<body style="background-color: #F3D3A5;">
+<!--Headers -->
+<header class="p-3" style="background-color: #F3D3A5;">
+  <div class="container position-relative mt-2 mb-1">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img src="/img/pentafoglio.png" alt="Logo sito" width="50">
+      </a>
+      <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img src="/img/Black_Coffee.png" alt="Logo sito" width="90">
+      </a>
+
+      <!-- Ricerca + Accesso -->
+      <div class="d-flex align-items-center ms-auto">
+        <form class="me-3" role="search">
+          <label for="search-input" class="visually-hidden">Ricerca</label>
+          <input type="search" id="search-input" class="form-control" placeholder="Ricerca..." aria-label="Search">
+        </form>
+
+        <div id="out-button" class="text-end">
+          <a href="login.html" class="btn btn-outline-dark me-2">Login</a>
+          <a href="sign_up.html" class="btn btn-outline-dark me-2">Sign-up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sezione bottoni con frecce -->
+  <div class="container position-relative mt-3 mb-1">
+
+    <!-- Freccia sinistra -->
+    <button class="scroll-btn left-btn" onclick="scrollButtons(-200)">
+      &#10094;
+    </button>
+
+    <!-- Contenitore bottoni -->
+    <div id="buttonScroll" class="d-flex align-items-center gap-3 px-3 scroll-buttons">
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Most Anticipated</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Horror Hits</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Comfort Reads</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Halloween Reads</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Horror 101</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Dark Academia</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Bewitching Books</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Paranormal Romcom</a>
+      <a href="#" class="btn px-4 flex-shrink-0" style="background-color: #FFB396; color: #000; border: 1px solid #000;">Staff Picks</a>
+    </div>
+
+    <!-- Freccia destra -->
+    <button class="scroll-btn right-btn" onclick="scrollButtons(200)">
+      &#10095;
+    </button>
+
+  </div>
+
+</header>
+
+<!--Main body -->
+<main class="container" style="background-color: #F3D3A5;">
+
+  <!-- Riga 1 -->
+  <div class="row mb-2 justify-content-between">
+    <!-- Consiglio 1 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Bugiarde si diventa</p>
+          <p class="mb-auto">Autore: Felicia Kingsley</p>
+          <p class="voto">Voto: 3.5/5 </p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/bugiarde-si-diventa.jpg" alt="Copertina Bugiarde si diventa" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 2 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Lo Hobbit</p>
+          <p class="mb-auto">Autore: J.R.R. Tolkien</p>
+          <p class="voto">Voto: 5.0/5 </p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Lo-Hobbit.jpg" alt="Copertina Lo Hobbit" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 3 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Joyland</p>
+          <p class="mb-auto">Autore: Stephen King</p>
+          <p class="voto">Voto: 3.5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Joyland.jpg" alt="Copertina Joyland" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Riga 2 -->
+  <div class="row mb-2 justify-content-between">
+    <!-- Consiglio 4 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Fahrenheit 451</p>
+          <p class="mb-auto">Autore: Ray Bradbury</p>
+          <p class="voto">Voto: 4.5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/F_451.jpg" alt="Copertina F 451" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 5 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Un Salmo per i Robot</p>
+          <p class="mb-auto">Autore: Becky Chambers</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/un_salmo_per_i_robot.jpg" alt="Copertina Un salmo per i robot" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 6 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Il gatto, il kaiju e il cavaliere</p>
+          <p class="mb-auto">Autore: Davide Caporali</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Gatto-Kaiju-Cavaliere.jpg" alt="Copertina Il Gatto, il Kaiju e il cavaliere" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Riga 3 -->
+  <div class="row mb-2 justify-content-between">
+    <!-- Consiglio 7 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: V per Vendetta</p>
+          <p class="mb-auto">Autore: Alan Moore</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/V-x-Vendetta.jpg" alt="Copertina V per Vendetta" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 8 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Legends & Lattes</p>
+          <p class="mb-auto">Autore: Travis Baldree</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/L&L.jpg" alt="Copertina Leggend & Lattes" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 9 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Soul eater</p>
+          <p class="mb-auto">Autore: Sōru Ītā</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Soul_Eater.jpg" alt="Copertina Soul Eater vol 1" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Riga 4 -->
+  <div class="row mb-2 justify-content-between">
+    <!-- Consiglio 10 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Berserk</p>
+          <p class="mb-auto">Autore: Kentarō Miura</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Berserk.jpg" alt="Copertina Berserk vol 1" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 11 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Maus</p>
+          <p class="mb-auto">Autore: Art Spiegelman</p>
+          <p class="voto">Voto: 4/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/maus.jpg" alt="Copertina Maus" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 12 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Dark Window</p>
+          <p class="mb-auto">Autore: Rachel Gillig</p>
+          <p class="voto">Voto: 4.5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Dark_Window.jpg" alt="Copertina Dark Window one" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Riga 5 -->
+  <div class="row mb-2 justify-content-between">
+    <!-- Consiglio 13 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Eragon</p>
+          <p class="mb-auto">Autore: Christopher Paolini</p>
+          <p class="voto">Voto: 3.5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Christopher_Paolini,_Eragon_1.jpg" alt="Copertina Eragon 1" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 14 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Belladonna</p>
+          <p class="mb-auto">Autore: Adalyn Grace</p>
+          <p class="voto">Voto: 4/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/Belladonna.jpg" alt="Copertina Belladonna" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Consiglio 15 -->
+    <div class="col-12 col-md-4" style="flex: 0 0 30%;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: #FFF5E1;">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="mb-auto">Titolo: Il Batman che ride</p>
+          <p class="mb-auto">Autore: Scott Snyder</p>
+          <p class="voto">Voto: 5/5</p>
+        </div>
+        <div class="col-auto d-none d-lg-block" style="flex: 0 0 35%;">
+          <img src="/img/bacheca/batman_who_laughs.jpg" alt="Copertina Batman who laughs" class="img-fluid" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!--Footer -->
+<footer class="p-3 mt-5" style="background-color: #D9A173; border-top: 2px solid black;">
+  <div class="container">
+    <div id="footer-nav" class="d-flex justify-content-center align-items-center" style="font-size: 1.1rem;">
+    </div>
+  </div>
+</footer>
+
+<a href="scrivi_consiglio.html" class="btn floating-btn" style="background-color: #CC8F78; color: #000;">+ Scrivi</a>
+
+
+
+
+</body>
+</html>
